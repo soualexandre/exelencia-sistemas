@@ -1,0 +1,49 @@
+.linha-vertical {
+    height: 50px;/*Altura da linha*/
+    border-left: 2px solid;/* Adiciona borda esquerda na div como ser fosse uma linha.*/
+  }
+  #menu ul {
+    padding:0px;
+    margin:0px;
+    list-style:none;
+    text-align: center;
+}
+#menu ul li { display: inline; }
+#menu ul li a {
+    padding: 10px 40px;
+    display: inline-block;
+    border-radius: 5px;
+    /* visual do link */
+    background-color:#15295C;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom:5px solid #15295C;
+}
+#menu ul li a:hover {
+    border-bottom:3px solid #21B531;
+}
+.menu-card{
+    background-color: #333;
+    width: rem;
+}
+#main-dashboard{
+    width: 1600px;
+    height: 900px;
+   margin: auto;
+}
+.munu-items{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+#btn-cadastrar{
+    background-color: #15295C;
+    color: #ffffff;
+}
+.table-vendas{
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
