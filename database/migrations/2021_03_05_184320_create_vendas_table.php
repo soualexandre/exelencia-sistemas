@@ -17,6 +17,7 @@ class CreateVendasTable extends Migration
             $table->id();
             $table->string('method');
             $table->string('value');
+            $table->date('date');
             $table->unsignedBigInteger('id_usuario');
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });

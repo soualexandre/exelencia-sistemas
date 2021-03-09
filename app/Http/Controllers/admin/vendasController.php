@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Vendas;
+use Carbon\Carbon;
+
 class Vendascontroller extends Controller
 {
     /**
@@ -13,14 +15,15 @@ class Vendascontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   public function index(){
+    public function index()
+    {
 
         $id = auth()->user()->id;
 
         $vendas = Vendas::where('id_usuario', $id)->orderBy('id', 'DESC')->paginate('7');
 
         return view('pages.vendas.index', compact('vendas'));
-   }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +31,6 @@ class Vendascontroller extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -41,10 +43,11 @@ class Vendascontroller extends Controller
     {
         $method = $request->input('method');
         $value = $request->input('value');
+        $date = new Carbon();
+        $date->yesterday();
         $id = auth()->user()->id;
-        
-        DB::insert('insert into vendas (method, value, id_usuario) values (?, ?, ?)', [$method, $value, $id]);
-        
+        DB::insert('insert into vendas (method, value, date, id_usuario) values (?, ?, ?, ?)', [$method, $value, $date , $id]);
+
         return back()->withStatus(__('Venda adicionada com sucesso'));
     }
 

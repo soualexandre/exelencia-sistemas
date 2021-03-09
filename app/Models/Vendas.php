@@ -10,6 +10,7 @@ class Vendas extends Model
     protected $fillable = [
         'method',
         'value',
+        'date',
     ];
     use HasFactory;
     

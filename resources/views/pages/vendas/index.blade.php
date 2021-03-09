@@ -38,7 +38,7 @@
                     <th scope="col">Pagamento</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Data</th>
-                    <th scope="col">Opções11111111111</th>
+                    <th scope="col">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@
                 <tr>
                     <td>{{$venda->method}}</td>
                     <td>{{$venda->value}},00 R$ </td>
-                    <td>05/52/2021</td>
+                    <td>{{date('d/m/y', strtotime($venda->date))}}</td>
                     <td>
                         <a href="#alterar">Alterar</a>
                         <a href="#apagar">Deletar</a>
