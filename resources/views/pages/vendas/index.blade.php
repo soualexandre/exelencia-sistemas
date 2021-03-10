@@ -1,11 +1,14 @@
 <x-app-layout>
     @include('alerts.success')
+    @include('alerts.errors')
+
+  
     <form clas="ml-4" method="post" action="{{route('vendas.create')}}">
         @csrf
         <div class="container">
             <div class="container col-8 mt-12">
                 <label>Tipo de transação</label>
-                <select class="form-select" name='method' aria-label="Default select example">
+                <select class="form-select" name='method' aria-label="Default select example" required>
                     <option selected>Selecione um tipo</option>
                     <option value="CRÉDITO">Cartão de crédito</option>
                     <option value="DÉBITO">Cartão débito</option>
@@ -17,7 +20,7 @@
             </div>
             <div class="container col-8 xol-xs-10 mt-4 jd-grid gap-2 d-md-flex justify-content-md-start">
                 <div class="input-group">
-                    <input type="text" name="value" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <input type="number" name="value" class="form-control" required aria-label="Amount (to the nearest dollar)">
                     <span class="input-group-text">.00 R$</span>
                 </div>
             </div>
@@ -27,9 +30,8 @@
         </div>
     </form>
 
-    <hr>
     <div class="table-vendas text-center">
-    <div class="col-6 row">~
+    <div class="mt-6">~
         <h3>Informações</h3>
     <div>
         <table class="table table-hover table-striped">

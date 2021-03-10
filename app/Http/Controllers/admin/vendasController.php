@@ -42,6 +42,9 @@ class Vendascontroller extends Controller
     public function store(Request $request)
     {
         $method = $request->input('method');
+        if($method == "Selecione um tipo"){
+            return back()->withStatu(__('Selecione um método de transação'));
+        }
         $value = $request->input('value');
         $date = new Carbon();
         $date->yesterday();
