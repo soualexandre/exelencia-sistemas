@@ -4,13 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Vendas;
-use App\Models\Caixa;
-use App\Models\Gastos;
-use Carbon\Carbon;
 
-class Vendascontroller extends Controller
+class gastosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +14,9 @@ class Vendascontroller extends Controller
      */
     public function index()
     {
-
-        $id = auth()->user()->id;
-
-        $vendas = Vendas::where('id_usuario', $id)->orderBy('id', 'DESC')->paginate('7');
-
-        return view('pages.vendas.index', compact('vendas'));
+            return view('pages.caixa.index');
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -33,6 +24,7 @@ class Vendascontroller extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -43,24 +35,7 @@ class Vendascontroller extends Controller
      */
     public function store(Request $request)
     {
-        $method = $request->input('method');
-        if ($method == "Selecione um tipo") {
-            return back()->withStatu(__('Selecione um método de transação'));
-        }
-        $value = $request->input('value');
-        $date = new Carbon();
-        $date->yesterday();
-        $id = auth()->user()->id;
-        DB::insert('insert into vendas (method, value, date, id_usuario) values (?, ?, ?, ?)', [$method, $value, $date, $id]);
-
-        return back()->withStatus(__('Venda adicionada com sucesso'));
-    }
-
-    public function adicionar($value , $id)
-    {
-        $bd_user = Caixa::where('id_usuario', $id);
-        dd($bd_user);
-        
+        //
     }
 
     /**
@@ -69,13 +44,9 @@ class Vendascontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        //retornando um mês específico
-        $users = DB::table('vendas')
-            ->whereMonth('date', '03')
-            ->get();
-        return $users;
+        //
     }
 
     /**

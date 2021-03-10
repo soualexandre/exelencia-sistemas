@@ -19,18 +19,18 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');;
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/vendas/index', 'App\Http\Controllers\admin\vendasController@index')->name('vendas.index');
+    Route::post('/vendas/create', 'App\Http\Controllers\admin\vendasController@store')->name('vendas.create');
+    Route::get('/vendas/show', 'App\Http\Controllers\admin\vendasController@show')->name('vendas.show');
+});
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/gastos/index', 'App\Http\Controllers\admin\gastosController@index')->name('gastos.index');
+    Route::post('/vendas/create', 'App\Http\Controllers\admin\vendasController@store')->name('vendas.create');
+    Route::get('/vendas/show', 'App\Http\Controllers\admin\vendasController@show')->name('vendas.show');
+});
 
 
-
-Route::get('/vendas/index', 'App\Http\Controllers\admin\vendasController@index')->name('vendas.index')->middleware('auth');
-Route::post('/vendas/create', 'App\Http\Controllers\admin\vendasController@store')->name('vendas.create')->middleware('auth');
-Route::get('/vendas/show', 'App\Http\Controllers\admin\vendasController@show')->name('vendas.show')->middleware('auth');
-
-
-
-// Route::group(['middleware' => 'auth'], function () {
-//     Route::get('/vendas/index', 'App\Http\Controllers\admin\vendasController@index')->name('vendas.index');
-// });
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

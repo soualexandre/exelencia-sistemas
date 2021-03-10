@@ -29,8 +29,8 @@
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <nav id="menu">
                     <ul>
-                        <li><a href="{{route('vendas.index')}}">Vendas</a></li>
-                        <li><a href="#">Fluxo de caixa</a></li>
+                        <li><a href="{{route('vendas.index')}}">Entrada de caixa</a></li>
+                        <li><a href="{{route('gastos.index')}}">Saída de caixa</a></li>
                         <li><a href="#">DRE Sintatica</a></li>
                         <li><a href="#">DRE analitica</a></li>
                         <li><a href="#">Banco</a></li>
