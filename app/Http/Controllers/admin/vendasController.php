@@ -48,8 +48,7 @@ class Vendascontroller extends Controller
             return back()->withStatu(__('Selecione um método de transação'));
         }
         $value = $request->input('value');
-        $date = new Carbon();
-        $date->yesterday();
+        $date = Carbon::yesterday();
         $id = auth()->user()->id;
         DB::insert('insert into vendas (method, value, date, id_usuario) values (?, ?, ?, ?)', [$method, $value, $date, $id]);
 
