@@ -25,6 +25,9 @@ Route::get('/dashboard', function () {
 
 Route::get('/vendas/index', 'App\Http\Controllers\admin\vendasController@index')->name('vendas.index')->middleware('auth');
 Route::post('/vendas/create', 'App\Http\Controllers\admin\vendasController@store')->name('vendas.create')->middleware('auth');
+Route::get('/vendas/show', 'App\Http\Controllers\admin\vendasController@show')->name('vendas.show')->middleware('auth');
+
+
 
 // Route::group(['middleware' => 'auth'], function () {
 //     Route::get('/vendas/index', 'App\Http\Controllers\admin\vendasController@index')->name('vendas.index');

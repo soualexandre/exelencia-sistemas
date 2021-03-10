@@ -60,9 +60,13 @@ class Vendascontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        //retornando um mês específico
+        $users = DB::table('vendas')
+                ->whereMonth('date', '03')
+                ->get();
+                return $users;
     }
 
     /**
