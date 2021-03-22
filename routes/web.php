@@ -24,12 +24,9 @@ Route::get('/dashboard', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/vendas/index', 'App\Http\Controllers\admin\vendasController@index')->name('vendas.index');
     Route::post('/vendas/create', 'App\Http\Controllers\admin\vendasController@store')->name('vendas.create');
-    Route::get('/vendas/show', 'App\Http\Controllers\admin\vendasController@show')->name('vendas.show');
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/gastos/index', 'App\Http\Controllers\admin\gastosController@index')->name('gastos.index');
-    Route::post('/vendas/create', 'App\Http\Controllers\admin\vendasController@store')->name('vendas.create');
-    Route::get('/vendas/show', 'App\Http\Controllers\admin\vendasController@show')->name('vendas.show');
 });
 
 

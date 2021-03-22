@@ -43,41 +43,50 @@ class Vendascontroller extends Controller
      */
     public function store(Request $request)
     {
-        $method = $request->input('method');
+        $vendas = $request->all();
 
-        if ($method == "Selecione um tipo") {
-            return back()->withStatu(__('Selecione um método de transação'));
+        foreach($vendas as $venda){
+            $venda = $venda['id'];
+            echo $venda;
+            // $imprimir = strval( $venda['id']).strval($venda['method']).strval($venda['value']);
+            // return $imprimir;
         }
-        $value = $request->input('value');
-        $date = Carbon::yesterday();
-        $id = auth()->user()->id;
 
-        $this->adicionar($value, $id);
+        // $method = $request->input('method');
 
-        DB::insert('insert into vendas (method, value, date, id_usuario) values (?, ?, ?, ?)', [$method, $value, $date, $id]);
+        // if ($method == "Selecione um tipo") {
+        //     return back()->withStatu(__('Selecione um método de transação'));
+        // }
+        // $value = $request->input('value');
+        // $date = Carbon::yesterday();
+        // $id = auth()->user()->id;
 
-        return back()->withStatus(__('Venda adicionada com sucesso'));
+        // $this->adicionar($value, $id);
+
+        // DB::insert('insert into vendas (method, value, date, id_usuario) values (?, ?, ?, ?)', [$method, $value, $date, $id]);
+
+        // return back()->withStatus(__('Venda adicionada com sucesso'));
     }
 
     public function adicionar($value, $id)
     {
         $dados = DB::select('select * from caixas where id_usuario = :id_usuario', ['id_usuario' => $id]);
-       
-       
+
+
         if (!empty($dados)) {
             $atual = $dados[0]->value;
             $id_usuario = $dados[0]->id_usuario;
 
             $soma = $value += $atual;
-            
+
             DB::table('caixas')
                 ->update(
-                    ['value' => $soma,
-                    'id_usuario' => $id_usuario, 
+                    [
+                        'value' => $soma,
+                        'id_usuario' => $id_usuario,
                     ]
                 );
-        }
-        else{
+        } else {
             DB::insert('insert into caixas (value, id_usuario) values (?, ?)', [$value, $id]);
         }
     }
